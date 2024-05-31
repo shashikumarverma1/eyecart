@@ -6,7 +6,15 @@ const UserModal=mongoose.Schema({
     },
     lastName:{
         type:String,
-        require:true
+        // require:true
+    },
+    gender:{
+        type:String,
+        // require:true
+    },
+    education:{
+        type:String,
+        // require:true
     },
     email:{
         type:String,

@@ -1,0 +1,42 @@
+.custom-input {
+    border: none;
+    outline: none;
+    /* padding: 5px; */
+    /* font-size: 14px; */
+    background-color: transparent;
+  }
+  
+  .custom-input::placeholder {
+    color: #aaa;
+  }
+  .custom-input {
+    border: none;
+    outline: none;
+    /* padding: 5px; */
+    /* font-size: 14px; */
+    background-color: transparent;
+  }
+  
+  .custom-input::placeholder {
+    color: #aaa;
+  }
+  
+  .custom-select {
+    border: none;
+    outline: none;
+    padding: 1px;
+    /* font-size: 10px; */
+    background-color: transparent;
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* Remove default arrow in Safari */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    /* background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjE0cHgiIHZpZXdCb3g9IjAgMCAyMCAyMCIgd2lkdGg9IjE0cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgN2w5IDkgOS05eiIvPjwvc3ZnPg=='); Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 1px center;
+  }
+  
+  .custom-select option {
+    color: black; /* Option text color */
+  }
+  
+  

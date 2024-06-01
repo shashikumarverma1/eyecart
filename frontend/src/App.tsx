@@ -5,6 +5,7 @@ import Signup from './screen/signup'
 import { PageNotFound } from './screen/pageNotFound'
 import Login from './screen/login'
 import Dashboard from './screen/dashboard'
+import NavBar from './components/navbar'
 
 function App() {
   const token = "eeeeeeeeee"
@@ -12,7 +13,7 @@ function App() {
     <>
     
      <BrowserRouter >
-  
+     <NavBar/>
    <Routes>
    
      { !token ? <Route  path='/' element={<Login/>}/> :

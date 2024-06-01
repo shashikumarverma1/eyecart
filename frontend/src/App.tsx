@@ -16,7 +16,7 @@ function App() {
      <NavBar/>
    <Routes>
    
-     { !token ? <Route  path='/' element={<Login/>}/> :
+     { token ? <Route  path='/' element={<Login/>}/> :
       <Route  path='/' element={<Dashboard/>}/>}
       <Route  path='/Signup' element={<Signup/>}/>
       <Route  path='/*' element={<PageNotFound/>}/>

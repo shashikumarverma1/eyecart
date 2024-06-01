@@ -2,6 +2,7 @@ import express from "express"
 export const router=express.Router();
 
 import { User } from "./schema/User.js";
+import { EyeCart } from "./schema/eyeCart.js";
 
 router.get('/user',async(req,res)=>{
     try{
@@ -61,3 +62,13 @@ router.delete('/deleteUser/:id', async (req, res) => {
         res.status(500).send({ message: 'Error deleting user', error });
     }
 });
+
+router.get('/eye',async(req,res)=>{
+    try{
+     const data= await EyeCart.find({})
+     console.log(data)
+      res.status(200).json(data)
+    }catch(err){
+        res.status().json(500).json({message:data.message})
+    }
+})

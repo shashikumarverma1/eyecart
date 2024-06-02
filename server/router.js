@@ -1,30 +1,69 @@
-import express from "express"
-export const router=express.Router();
+import express from 'express';
+import { User } from './schema/User.js';
+import { EyeCart } from './schema/eyeCart.js';
+import jwt from 'jsonwebtoken';
 
-import { User } from "./schema/User.js";
-import { EyeCart } from "./schema/eyeCart.js";
+const secret = 'qoiuehwbhecehbc';
+export const router = express.Router();
 
-router.get('/user',async(req,res)=>{
-    try{
-        console.log("read user")
-     const data= await User.find({})
-     console.log(data)
-      res.status(200).json(data)
-    }catch(err){
-        res.status().json(500).json({message:data.message})
+router.get('/user', async (req, res) => {
+    try {
+        console.log("read user");
+        const data = await User.find({});
+        console.log(data);
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-})
-router.post('/createUser', async (req, res) => {
+});
+
+router.post('/signup', async (req, res) => {
     try {
         console.log('Request body:', req.body);
-
         const newUser = new User(req.body);
         await newUser.save();
-
-        res.status(201).send({ message: 'User created successfully', user: newUser });
+        jwt.sign(req.body, secret, (err, token) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({ message: "something went wrong" });
+            }
+            res.status(201).send({ user: newUser, token });
+        });
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).send({ message: 'Error creating user', error });
+    }
+});
+
+router.post('/login', async (req, res) => {
+    try {
+        console.log('Request body:', req.body);
+        const { email, password } = req.body;
+
+        // Find user by email
+        const user = await User.findOne({ email });
+        console.log(user)
+        if (!user) {
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        // Check if the password matches (this assumes you have a password hashing and comparison logic)
+        // const isMatch = await user.comparePassword(password);
+        // if (!isMatch) {
+        //     return res.status(401).send({ message: "Invalid credentials" });
+        // }
+
+        // Sign the JWT token
+        jwt.sign({ userId: user._id, email: user.email }, secret, (err, token) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({ message: "something went wrong" });
+            }
+            res.status(200).send({ user, token });
+        });
+    } catch (error) {
+        console.error('Error logging in user:', error);
+        res.status(500).send({ message: 'Error logging in user', error });
     }
 });
 
@@ -63,12 +102,12 @@ router.delete('/deleteUser/:id', async (req, res) => {
     }
 });
 
-router.get('/eye',async(req,res)=>{
-    try{
-     const data= await EyeCart.find({})
-     console.log(data)
-      res.status(200).json(data)
-    }catch(err){
-        res.status().json(500).json({message:data.message})
+router.get('/eye', async (req, res) => {
+    try {
+        const data = await EyeCart.find({});
+        console.log(data);
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-})
+});

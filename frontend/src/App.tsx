@@ -6,9 +6,11 @@ import { PageNotFound } from './screen/pageNotFound'
 import Login from './screen/login'
 import Dashboard from './screen/dashboard'
 import NavBar from './components/navbar'
+import { useContext, useEffect } from 'react'
+import { UserInfo } from './context/userDetails'
 
 function App() {
-  const token = "eeeeeeeeee"
+  const {token, setToken } = useContext(UserInfo)
   return (
     <>
     
@@ -16,7 +18,7 @@ function App() {
      <NavBar/>
    <Routes>
    
-     { token ? <Route  path='/' element={<Login/>}/> :
+     { !token ? <Route  path='/' element={<Login/>}/> :
       <Route  path='/' element={<Dashboard/>}/>}
       <Route  path='/Signup' element={<Signup/>}/>
       <Route  path='/*' element={<PageNotFound/>}/>

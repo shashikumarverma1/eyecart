@@ -11,11 +11,23 @@ const Signup = () => {
   password:""
  })
   //   const navigate=useNavigate()
-  const SignUp = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-     console.log(userData , "uuuuuuuuu")
-
-    //  navigate('/login')
+    // console.log("clik")
+    // return
+    try {
+      const response = await fetch('http://localhost:5500/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      });
+      const result = await response.json();
+      console.log('Success:', result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
   console.log(userData , "userData")
   return (
@@ -27,7 +39,7 @@ const Signup = () => {
         marginTop: 2,
       }}
     >
-      <form onSubmit={(e) => SignUp(e)} className="mt-5  w-2/5">
+      <form onSubmit={(e) => handleSubmit(e)} className="mt-5  w-2/5">
         <input
           type="text"
           placeholder="Name"

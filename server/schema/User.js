@@ -25,6 +25,10 @@ const UserModal=mongoose.Schema({
         require:true,
        // unique:true
     },
+    token:{
+        type:String,
+        // require:true
+    },
  
     timestamp:{
         type:String,

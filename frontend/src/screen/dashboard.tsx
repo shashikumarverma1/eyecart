@@ -21,9 +21,15 @@ console.log("SearchText" , SearchText)
     <div style={{ margin:"auto" }}>
      <div style={{display:"flex" , justifyContent:"center"}}>
      {data.filter((e)=>{
-      console.log(e?.title?.includes(SearchText))
-      if(SearchText == "") return e
-      return e?.title?.includes(SearchText)
+      
+     
+      if(SearchText){
+        return e?.title?.includes(SearchText)
+      }else{
+        return e
+      }
+    
+      
      }).map((e, index) => (
         <Card data={e} key={index} />
       ))}

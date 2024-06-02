@@ -1,15 +1,16 @@
 import { IoSearch, IoBriefcaseOutline } from "react-icons/io5";
 import { SearchTextInFo } from "../context/searchProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartInFo } from "../context/cart";
 import "./NavBar.css"; // Import the CSS file
 
 function NavBar() {
   const { setSearchText } = useContext(SearchTextInFo);
   const { cartData } = useContext(CartInFo);
-
+const [showModal , setShowModal]=useState(false)
   return (
-    <div className="navbar">
+    <div>
+      <div className="navbar">
       <div className="navbar-content">
         <div className="navbar-logo">
           <img
@@ -35,7 +36,7 @@ function NavBar() {
               onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
-          <IoBriefcaseOutline />
+        <span onClick={()=>setShowModal(!showModal)}><IoBriefcaseOutline /></span>
           <p className="navbar-cart">{cartData.length}</p>
           <div className="navbar-user">
             <p className="navbar-user-item">User</p>
@@ -51,7 +52,35 @@ function NavBar() {
             </select>
           </div>
         </div>
+      
       </div>
+     
+    </div>
+     {showModal && <div>
+      <div style={{position:"absolute" , left:'80vw' , backgroundColor:"grey", width:100 , borderRadius:10}}>
+              <ul>
+               
+           
+      {
+        cartData.map((e , index)=>{
+          console.log(e)
+          return (
+            <li style={{ paddingLeft:10, color:"#FFFFFF" , fontSize:10 ,}} key={index}>
+              <div style={{display:'flex' , alignItems:"center"}}>
+              <span style={{margin:5}}>{index +1}.</span> <img
+        src="https://firebasestorage.googleapis.com/v0/b/salinaka-ecommerce.appspot.com/o/products%2FYIZuxWur1W4fAT6z3ejk?alt=media&token=7dca264f-c345-4cfc-93a8-60217a53f66a"
+        alt="Logo"
+        style={{width:20 , height:20 , backgroundColor:"#FFFFFF" , borderRadius:2 , margin:5}}
+      /> <span style={{margin:5}}>{e.title}</span> 
+
+              </div>
+            </li>
+          )
+        })
+      }
+         </ul>
+            </div>
+      </div>}
     </div>
   );
 }

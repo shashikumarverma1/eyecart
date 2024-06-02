@@ -19,7 +19,7 @@ router.get('/user', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
-        console.log('Request body:', req.body);
+        // console.log('Request body:', req.body);
         const newUser = new User(req.body);
         await newUser.save();
         jwt.sign(req.body, secret, (err, token) => {

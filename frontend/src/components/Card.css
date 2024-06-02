@@ -1,8 +1,8 @@
 .card {
-    width: 150px;
+    width: 99px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 16px;
+    margin: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
@@ -40,7 +40,8 @@
   }
   
   .card-add-to-cart {
-    background-color: aqua;
+    background-color:#000000;
+    color: #FFFFFF;
   }
   
   .card-add-to-cart span {

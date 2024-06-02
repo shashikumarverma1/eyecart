@@ -8,7 +8,7 @@ function Card({ data }) {
 
   return (
     <div
-      className="card"
+      className="card" style={{marginTop:15}}
       onMouseEnter={() => setId(data._id)}
       onMouseLeave={() => setId('')}
     >
@@ -19,13 +19,18 @@ function Card({ data }) {
       <div className="card-content">
         <p className="card-title">{data.title}</p>
         <p className="card-description">{data?.description.slice(0, 25)}</p>
-        <p className="card-price">$ {data.price}</p>
+        <p className="card-price">${data.price}</p>
         {id === data._id && (
-          <h1 onClick={() => setCartData([...cartData, data])} className="card-add-to-cart">
+          <h1 onClick={() => {
+            if(cartData.filter((e) => e._id === id).length === 0){
+              setCartData([...cartData, data])
+            }
+           
+            }} className="card-add-to-cart">
             {cartData.filter((e) => e._id === id).length === 0 ? (
-              <span>Add to cart</span>
+              <span style={{fontSize:8}}>Add to cart</span>
             ) : (
-              <span>Remove from cart</span>
+              <span style={{fontSize:8 }}>Remove from cart</span>
             )}
           </h1>
         )}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // import { useNavigate } from 'react-router-dom';
 const Signup = () => {
@@ -10,7 +10,7 @@ const Signup = () => {
   gender:"",
   password:""
  })
-  //   const navigate=useNavigate()
+    const navigate=useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("clik")
@@ -25,6 +25,7 @@ const Signup = () => {
       });
       const result = await response.json();
       console.log('Success:', result);
+      navigate('/')
     } catch (error) {
       console.error('Error:', error);
     }
@@ -53,7 +54,7 @@ const Signup = () => {
           type="email"
           placeholder="Email"
           required
-          onChange={(e) => setUserData({ ...userData, 'email':e.target.value})}
+          onChange={(e) => setUserData({ ...userData, 'email':e.target.value.toLocaleLowerCase().trim()})}
           className="rounded w-full text-center bg-blue-50  p-1 px-3 m-1 py-1  "
         />
         <br />

@@ -19,7 +19,7 @@ const Dashboard = () => {
 console.log("SearchText" , SearchText)
   return (
     <div style={{ margin:"auto" }}>
-     <div style={{display:"flex" , justifyContent:"center"}}>
+     <div style={{display:"flex" , justifyContent:"center" , width:"80vw"  , margin:"auto"}}  className="columns-4 m-2 md:columns-4 sm:columns-6">
      {data.filter((e)=>{
       
      
@@ -34,7 +34,7 @@ console.log("SearchText" , SearchText)
         <Card data={e} key={index} />
       ))}
      </div>
-  
+
     </div>
   );
 };

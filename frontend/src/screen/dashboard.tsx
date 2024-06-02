@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import Card from "../components/card";
+import Card from "../components/Card";
 
 import { SearchTextInFo } from "../context/searchProvider";
 
